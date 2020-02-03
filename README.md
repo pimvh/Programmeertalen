@@ -182,7 +182,7 @@ The best Knapsack found has a value of 102869 and holds the Items with index: [0
 
 ## Documentation
 
-To generate documentation of the Java source code (requires doxygen) use:
+To generate documentation of the Java source code use:
 
 ```
  make doc
