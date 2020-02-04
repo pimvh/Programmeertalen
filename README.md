@@ -8,7 +8,7 @@ be visualized as:
 
 The goal in a knapsack problem is to pack a number of items from a
 given set in the knapsack in such a way that the total values off all
-packed items is maximized. Each item independent from its value
+packed items is maximized. Each item, independent from its value,
 requires resources to pack and the total number of resources over all
 packed items may not exceed the resource capacity of the knapsack (as
 indicated in red).
