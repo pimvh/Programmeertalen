@@ -5,7 +5,7 @@ echo
 # go to upper dir a and search upper directory for java files
 cd ..
 
-FILES="**/*.java *.java"
+FILES=$(find -name '*.java')
 # count, print file name, print line number, fixed string
 GREP_OPTS="-Hon"
 
@@ -13,7 +13,7 @@ E_BADARGS=65
 
 if [ $# -ne 1 ]
 then
-  echo "Usage: `basename $0` search_string"
+  echo "Usage: `basename $0` [search_string]"
   exit $E_BADARGS
 fi
 
