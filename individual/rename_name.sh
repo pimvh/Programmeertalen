@@ -10,13 +10,15 @@ fi
 
 cd ..
 
-FILES=$(find ./ -name *.java)
+# find all java files
+FILES=$(find -name '*.java')
 
+# iterate over files
 for file in $FILES
 do
-    chmod o+wr $file
-    cat $file | perl -pe "s/$1/$2/sg" > $file
-    echo
+    # get contents of file,
+    cat $file | perl -pe "s/$1/$2/sg" > temp.txt
+    mv temp.txt $file
 done
 
 exit $?
