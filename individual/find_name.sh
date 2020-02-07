@@ -17,9 +17,11 @@ then
   exit $E_BADARGS
 fi
 
+# remove for loop? -exec
 for file in $FILES
 do
-    grep $GREP_OPTS "$1" "$file"
+    grep $GREP_OPTS "$1" "$file" | cut -f 1-2 -d:
 done
 
+#TO DO: awk -flafg separator
 exit $?
