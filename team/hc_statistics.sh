@@ -61,6 +61,6 @@ for file in $AVG_FILES
     do
     echo -e "$count param:$count\c"  >> $DIR_NAME/$STATISTICS
     awk '{{sum += $0; sumsq += ($0)^2}}
-          END { printf " %f %f \n", sum/NR, sqrt((sumsq-sum^2/NR)/NR)}' $file >> $DIR_NAME/$STATISTICS
+        END { printf " %f %f \n", sum/NR, sqrt((sumsq-sum^2/NR)/NR)}' $file >> $DIR_NAME/$STATISTICS
     ((count++))
     done
