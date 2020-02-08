@@ -18,7 +18,6 @@ then
   exit $E_BADARGS
 fi
 
-# AWK_ARG="-verbose $VERBOSE -nr_items $NR_ITEM -dimensions $DIMENSIONS -solver $SOLVER -nr_iterations $NR_ITERATIONS"
 cd ..
 
 if [ ! -e "$DIR_NAME" ]       # Check if dir exists.
@@ -31,7 +30,6 @@ FILES=$(find $DIR_NAME -name "$AVG_FILE_BLOT" | sort -n)
 
 for file in $FILES
     do
-    echo $file
     # find 'Knapsack' in file, and start reading from the line below it.
     HEADER=$(($(grep $GREP_OPTS $HEADER_END_STRING $file | cut -f 1 -d:) + 2))
     tail $file --lines=+$HEADER | cut -d' ' -f1,5 | awk -F '[ :]' '{print $2" "$4}'  > $DIR_NAME/cleaned.txt
@@ -45,7 +43,6 @@ for file in $FILES
 
     # update the original file
     NEW_NAME=$(echo "$file" | cut -d "." -f 1)-cleaned.dat
-    echo $NEW_NAME
     cat $DIR_NAME/cleaned.txt > $NEW_NAME
     done
 

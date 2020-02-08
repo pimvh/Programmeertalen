@@ -6,11 +6,9 @@ NR_ITEM=100
 DIMENSIONS=2
 SOLVER=simulated_annealing
 NR_ITERATIONS=10000
-
-NR_TO_UNPACK="TO DO select best value in found hc-average-value.pdf"
-echo $NR_TO_UNPACK
-echo 'not working yet.'
+NR_TO_UNPACK=3
 MAX_TEMPERATURE="0 1 10 100 1000 10000"
+RUNS="1 2 3 4 5"
 
 # Filenames
 DIR_NAME="sa-logs"
@@ -22,7 +20,7 @@ then
   exit $E_BADARGS
 fi
 
-ALGO_ARGUMENTS="-verbose $VERBOSE -nr_items $NR_ITEM -dimensions $DIMENSIONS -solver $SOLVER -nr_iterations $NR_ITERATIONS"
+ALGO_ARGUMENTS="-verbose $VERBOSE -nr_items $NR_ITEM -dimensions $DIMENSIONS -solver $SOLVER -nr_iterations $NR_ITERATIONS -nr_to_unpack $NR_TO_UNPACK"
 
 cd .. && make > /dev/null
 
