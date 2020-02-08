@@ -56,10 +56,8 @@ then
 fi
 
 AVG_FILES=$(find $DIR_NAME -name "$FINAL_NAMES" | sort -n)
-echo $AVG_FILES
-echo "hier"
 count=1
-for file in $AVG_FILES:
+for file in $AVG_FILES
     do
     echo -e "$count param:$count\c"  >> $DIR_NAME/$STATISTICS
     awk '{{sum += $0; sumsq += ($0)^2}}
