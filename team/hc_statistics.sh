@@ -6,7 +6,9 @@ FILE_EXTENSION='*.dat'
 
 HEADER_END_STRING='Knapsack'
 GREP_OPTS="-hon -m 1"
-AVG_FILE_BLOT='final-*.dat'
+AVG_FILE_BLOT='param-*-all.dat'
+CLEANED_NAMES='param-*-cleaned.dat'
+FINAL_NAMES='final-*.dat'
 
 STATISTICS='hc-statistics.dat'
 
@@ -25,10 +27,11 @@ then
     exit 1
 fi
 
-FILES=$(find $DIR_NAME -name "$FILE_EXTENSION" | sort -n)
+FILES=$(find $DIR_NAME -name "$AVG_FILE_BLOT" | sort -n)
 
 for file in $FILES
     do
+    echo $file
     # find 'Knapsack' in file, and start reading from the line below it.
     HEADER=$(($(grep $GREP_OPTS $HEADER_END_STRING $file | cut -f 1 -d:) + 2))
     tail $file --lines=+$HEADER | cut -d' ' -f1,5 | awk -F '[ :]' '{print $2" "$4}'  > $DIR_NAME/cleaned.txt
@@ -41,15 +44,20 @@ for file in $FILES
     tail $DIR_NAME/cleaned.txt --lines=2 | awk -F" " '{print $2}' | head -1 >> $DIR_NAME/$AVG_FILE_NAME
 
     # update the original file
-    cat $DIR_NAME/cleaned.txt > $file
+    NEW_NAME=$(echo "$file" | cut -d "." -f 1)-cleaned.dat
+    echo $NEW_NAME
+    cat $DIR_NAME/cleaned.txt > $NEW_NAME
     done
 
 # remove last temporary file
-rm $DIR_NAME/cleaned.txt
+if [ -e "$DIR_NAME/cleaned.txt" ]       # Check if file exists.
+then
+  rm $DIR_NAME/cleaned.txt
+fi
 
-AVG_FILES=$(find $DIR_NAME -name "$AVG_FILE_BLOT" | sort -n)
+AVG_FILES=$(find $DIR_NAME -name "$FINAL_NAMES" | sort -n)
 echo $AVG_FILES
-
+echo "hier"
 count=1
 for file in $AVG_FILES:
     do
