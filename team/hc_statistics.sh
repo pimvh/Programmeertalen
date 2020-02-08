@@ -6,6 +6,9 @@ FILE_EXTENSION='*.dat'
 
 HEADER_END_STRING='Knapsack'
 GREP_OPTS="-hon -m 1"
+AVG_FILE_BLOT='final-*.dat'
+
+STATISTICS='hc-statistics.dat'
 
 if [ $# -ne 0 ]
 then
@@ -22,10 +25,10 @@ then
     exit 1
 fi
 
-FILES=$(find $DIR_NAME -name "$FILE_EXTENSION")
+FILES=$(find $DIR_NAME -name "$FILE_EXTENSION" | sort -n)
 
 for file in $FILES
-do
+    do
     # find 'Knapsack' in file, and start reading from the line below it.
     HEADER=$(($(grep $GREP_OPTS $HEADER_END_STRING $file | cut -f 1 -d:) + 2))
     tail $file --lines=+$HEADER | cut -d' ' -f1,5 | awk -F '[ :]' '{print $2" "$4}'  > $DIR_NAME/cleaned.txt
@@ -39,7 +42,19 @@ do
 
     # update the original file
     cat $DIR_NAME/cleaned.txt > $file
-done
+    done
 
 # remove last temporary file
 rm $DIR_NAME/cleaned.txt
+
+AVG_FILES=$(find $DIR_NAME -name "$AVG_FILE_BLOT" | sort -n)
+echo $AVG_FILES
+
+count=1
+for file in $AVG_FILES:
+    do
+    echo -e "$count param:$count\c"  >> $DIR_NAME/$STATISTICS
+    awk '{{sum += $0; sumsq += ($0)^2}}
+          END { printf " %f %f \n", sum/NR, sqrt((sumsq-sum^2/NR)/NR)}' $file >> $DIR_NAME/$STATISTICS
+    ((count++))
+    done
