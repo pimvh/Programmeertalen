@@ -18,8 +18,6 @@ then
   exit $E_BADARGS
 fi
 
-cd ..
-
 if [ ! -e "$DIR_NAME" ]       # Check if dir exists.
 then
     echo "$DIR_NAME does not exit, please run ./sa_experiments.sh first."

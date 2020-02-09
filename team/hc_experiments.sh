@@ -21,7 +21,7 @@ fi
 
 ALGO_ARGUMENTS="-verbose $VERBOSE -nr_items $NR_ITEM -dimensions $DIMENSIONS -solver $SOLVER -nr_iterations $NR_ITERATIONS"
 
-cd .. && make > /dev/null
+make > /dev/null
 
 #create directory
 if [ ! -e "$DIR_NAME" ]       # Check if dir exists.

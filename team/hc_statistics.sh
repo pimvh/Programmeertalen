@@ -18,8 +18,6 @@ then
   exit $E_BADARGS
 fi
 
-cd ..
-
 if [ ! -e "$DIR_NAME" ]       # Check if dir exists.
 then
     echo "$DIR_NAME does not exit, please run ./hc_experiments.sh first."
