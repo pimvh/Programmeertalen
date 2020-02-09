@@ -25,9 +25,9 @@ Tenslotte berekenen we met awk het gemiddelde en de standaard deviatie van elk
 bestand. Nadat we dit met AWK geschreven hadden vonden we uit dat hier een oplossing voor
 gegeven is in het voorbeeld.
 
-###############
+##############################
 ./team/hc_plots.sh;
-###############
+##############################
 
 HC plots is geschreven met behulp van GNU plot en aan de hand van het voorbeeld.
 Deze output een gecleanende plot voor data
