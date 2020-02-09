@@ -7,6 +7,8 @@ JAVAS   = $(shell find ./ -type f -name '*.java')
 CLASSES = $(patsubst %.java,%.class,$(JAVAS))
 DIAGRAM_SCRIPTS  = $(shell find ./individual/ -type f -name 'generate_diagram_*.sh')
 DIAGRAM_DOTS = $(shell find ./individual -type f -name '*.dot')
+DAT_FILES = $(shell find hc-logs/ sa-logs/ -type f -name '*.dat')
+PLOTS = $(shell find -type f -name 'hc-*.pdf'; find -type f -name 'sa-*.pdf')
 
 all: 	$(CLASSES)
 
@@ -14,7 +16,7 @@ all: 	$(CLASSES)
 %.class: %.java
 	$(JAVAC) $(FLAGS) $<
 
-TESTS_JAVAS   = $(shell find ./tests/ -type f -name 'Test_*.java')
+TESTS_JAVAS = $(shell find ./tests/ -type f -name 'Test_*.java')
 TESTS_CLASSES = $(patsubst %.java,%.class,$(TESTS_JAVAS))
 
 test:	$(CLASSES)
@@ -51,5 +53,15 @@ diagrams:
 	  `./:$$dir $$file` ;\
 	  `dot -Tpdf :$$dir $$file > :$$dir $$file .pdf`;\
 
+hc:
+	./team/hc_experiments.sh;
+	./team/hc_statistics.sh;
+	./team/hc_plots.sh;
+
+sa:
+	./team/sa_experiments.sh;
+	./team/sa_statistics.sh;
+	./team/sa_plots.sh;
+
 clean:  doc_clean
-	$(RM) $(CLASSES) $(DIAGRAM_DOTS)
+	$(RM) $(CLASSES) $(DIAGRAM_DOTS) $(DAT_FILES) $(PLOTS)
