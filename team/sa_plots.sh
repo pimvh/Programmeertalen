@@ -13,5 +13,5 @@ do
   gnuplot -e "set terminal pdf; \
               set title 'runs'; \
               plot  for [i = 1:5] 'sa-logs/param-$param-run-'.i.'-all-cleaned.dat'\
-              with lines title 'parameter $run '.i.'';"  > ./sa-unpack$param-runs.pdf
+              with lines title 'temp $param run '.i.'';"  > ./sa-temp$param-runs.pdf
 done
