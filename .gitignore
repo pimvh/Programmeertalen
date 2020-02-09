@@ -9,15 +9,3 @@
 #     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
 # Learn more about Git LFS for large files:
 #     https://www.atlassian.com/git/tutorials/git-lfs
-
--d
-Main.class
-cut
-hc-average-values.pdf
-hc-logs/final-1.dat
-hc-logs/final-2.dat
-hc-logs/final-3.dat
-hc-logs/final-4.dat
-hc-logs/final-5.dat
-hc-logs/final-6.dat
-hc-logs/hc-statistics.dat
