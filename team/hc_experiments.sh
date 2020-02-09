@@ -34,8 +34,11 @@ for NR in $NR_TO_UNPACK
     do
     for RUN in $RUNS
         do
-        echo "running number $NR, run $RUN..."
+        echo -en "\rrunning number to unpack $NR, run $RUN..."
         FILE_NAME="$FILE_PREFIX-$NR-run-$RUN-all.dat"
         java Main $ALGO_ARGUMENTS "-nr_to_unpack $NR" > $DIR_NAME/$FILE_NAME
         done
     done
+
+# clean everything on the line
+echo -e "\033[2K"

@@ -2,7 +2,6 @@
 
 MAX_TEMPERATURE="0 1 10 100 1000 10000"
 
-# TO DO
 gnuplot -e "set terminal pdf; \
             set title 'average value'; \
             set boxwidth -2; \

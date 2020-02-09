@@ -35,8 +35,11 @@ for MAX_TEMP in $MAX_TEMPERATURE
     do
     for RUN in $RUNS
         do
-        echo "running temp $MAX_TEMP, run $RUN..."
+        echo -en "\rrunning temp $MAX_TEMP, run $RUN..."
         FILE_NAME="$FILE_PREFIX-$MAX_TEMP-run-$RUN-all.dat"
         java Main $ALGO_ARGUMENTS "-max_temperature $MAX_TEMP" > $DIR_NAME/$FILE_NAME
         done
     done
+
+# clean everything on the line
+echo -e "\033[2K"
